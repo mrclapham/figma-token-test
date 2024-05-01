@@ -1,8 +1,19 @@
 {
-  "name": "react-ts",
+  "name": "redhand-ui",
+  "description": "A UI library.",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "main": "index.ts",
+  "author": "Graham Clapham",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrclapham/redhand-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrclapham/redhand-ui/issues"
+  },
+    "homepage": "https://github.com/mrclapham/redhand-ui/tree/main",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
