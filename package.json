@@ -1,7 +1,6 @@
 {
   "name": "redhand-ui",
   "description": "A UI library.",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "main": "index.ts",
