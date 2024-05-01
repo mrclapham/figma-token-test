@@ -1,0 +1,36 @@
+@import '../../../build/scss/_variables.scss';
+.button-sass {
+    // Base button styles
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  
+    // Size variations
+    &-small {
+      font-size: $sd-core-size-sm+px;
+      padding: $sd-core-size-sm+px;
+    }
+    &-medium {
+        font-size: $sd-core-size-md+px;
+        padding: $sd-core-size-sm+px;
+    }
+  
+    &-large {
+        font-size: $sd-core-size-lg+px;
+        padding: $sd-core-size-sm+px;
+    }
+  
+    // Color variations
+    &-primary {
+      background-color: $sd-core-color-primary;
+      color: #fff;
+    }
+  
+    &-secondary {
+      background-color: $sd-core-color-secondary;
+      color: #fff;
+    }
+  }

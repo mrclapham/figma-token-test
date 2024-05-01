@@ -26,18 +26,27 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     label: "Button",
+    variant: "primary",
   },
 };
 
 export const Secondary: Story = {
   args: {
     label: "Button",
+    variant: "secondary",
   },
 };
 
 export const Large: Story = {
   args: {
     size: "large",
+    label: "Button",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: "medium",
     label: "Button",
   },
 };
