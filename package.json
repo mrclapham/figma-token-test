@@ -15,11 +15,12 @@
     "homepage": "https://github.com/mrclapham/redhand-ui/tree/main",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "yarn tokens && tsc && vite build",
+    "tokens": "node build-tokens",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "yarn tokens && storybook dev -p 6006",
+    "build-storybook": "yarn tokens && storybook build"
   },
   "dependencies": {
     "@tokens-studio/sd-transforms": "^0.15.2",

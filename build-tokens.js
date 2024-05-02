@@ -5,7 +5,7 @@ const config = {
   platforms: {
     scss: {
       transformGroup: "scss",
-      prefix: "sd",
+      prefix: "rh",
       buildPath: "build/scss/",
       files: [
         {
