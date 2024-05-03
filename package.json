@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/mrclapham/redhand-ui/issues"
   },
-    "homepage": "https://github.com/mrclapham/redhand-ui/tree/main",
+  "homepage": "https://github.com/mrclapham/redhand-ui/tree/main",
   "scripts": {
     "dev": "vite",
     "build": "yarn tokens && tsc && vite build",
@@ -27,7 +27,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.76.0",
-    "style-dictionary": "^3.9.2"
+    "style-dictionary": "^3.9.2",
+    "styled-components": "^6.1.9"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.3",
