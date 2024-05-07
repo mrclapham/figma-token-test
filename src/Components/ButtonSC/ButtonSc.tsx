@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { tokens } from '../../../build/ts/tokens';
+import {darken  } from 'polished';
 
-export type ButtonScProps = {
+export type ButtonProps = {
     label?: string;
     size?: 'sm' | 'md' | 'lg';
     variant?: 'primary' | 'secondary';
@@ -12,12 +13,12 @@ export type ButtonScProps = {
 
 const { core: {size: tokenSize} } = tokens;
 
-export const ButtonStyle = styled.button<ButtonScProps>`
+export const ButtonStyle = styled.button<ButtonProps>`
   padding: ${({size})=> {
     const pad: number =  size ? parseInt(tokenSize[size].value) : parseInt(tokenSize.md.value);
     return `${pad}px ${pad*2}px`;
   }};
-  font-size: ${({size})=> size ? `${tokenSize[size].value}px` : `${tokenSize.md.value}px`};
+  font-size: ${({size})=> size ? `${tokenSize[size].value}px` : `{tokenSize.md.value}px`};
   border-radius: 5px;
   cursor: pointer;
   border: none;
@@ -25,7 +26,7 @@ export const ButtonStyle = styled.button<ButtonScProps>`
   };
   color: white;
   &:hover {
-    background-color: ${({variant})=> variant === 'primary' ? tokens.core.color.secondary.value : tokens.core.color.primary.value};
+    background-color: ${({variant})=> variant ? darken(0.1, tokens.core.color['primary'].value): 'red'};
   }
 `;
 
@@ -35,7 +36,7 @@ export const ButtonSc = ({ children = undefined,
     onClick = () => {}, 
     variant = 'primary', 
     size = 'md', 
-    label = "Button" }: ButtonScProps) => {
+    label = "Button" }: ButtonProps) => {
 
     return <ButtonStyle onClick={onClick} variant={variant} size={size}>
         <span>{`${label}`}</span>

@@ -2,12 +2,12 @@ export const tokens = {
   "core": {
     "size": {
       "sm": {
-        "value": "5",
+        "value": "15",
         "type": "sizing",
         "filePath": "tokens/tokens.json",
         "isSource": true,
         "original": {
-          "value": "5",
+          "value": "15",
           "type": "sizing"
         },
         "name": "CoreSizeSm",
@@ -23,12 +23,12 @@ export const tokens = {
         ]
       },
       "md": {
-        "value": "10",
+        "value": "20",
         "type": "sizing",
         "filePath": "tokens/tokens.json",
         "isSource": true,
         "original": {
-          "value": "10",
+          "value": "20",
           "type": "sizing"
         },
         "name": "CoreSizeMd",
@@ -44,12 +44,12 @@ export const tokens = {
         ]
       },
       "lg": {
-        "value": "15",
+        "value": "30",
         "type": "sizing",
         "filePath": "tokens/tokens.json",
         "isSource": true,
         "original": {
-          "value": "15",
+          "value": "30",
           "type": "sizing"
         },
         "name": "CoreSizeLg",
@@ -67,12 +67,12 @@ export const tokens = {
     },
     "color": {
       "primary": {
-        "value": "#2985b3",
+        "value": "#f706b1",
         "type": "color",
         "filePath": "tokens/tokens.json",
         "isSource": true,
         "original": {
-          "value": "#2985b3",
+          "value": "#f706b1",
           "type": "color"
         },
         "name": "CoreColorPrimary",
