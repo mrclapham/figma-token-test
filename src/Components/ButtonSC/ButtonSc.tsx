@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { tokens } from '../../../build/ts/tokens';
-import {darken  } from 'polished';
+import { darken  } from 'polished';
 
-export type ButtonProps = {
+export type ButtonScProps = {
     label?: string;
     size?: 'sm' | 'md' | 'lg';
     variant?: 'primary' | 'secondary';
@@ -13,7 +13,7 @@ export type ButtonProps = {
 
 const { core: {size: tokenSize} } = tokens;
 
-export const ButtonStyle = styled.button<ButtonProps>`
+export const ButtonStyle = styled.button<ButtonScProps>`
   padding: ${({size})=> {
     const pad: number =  size ? parseInt(tokenSize[size].value) : parseInt(tokenSize.md.value);
     return `${pad}px ${pad*2}px`;
@@ -36,7 +36,7 @@ export const ButtonSc = ({ children = undefined,
     onClick = () => {}, 
     variant = 'primary', 
     size = 'md', 
-    label = "Button" }: ButtonProps) => {
+    label = "Button" }: ButtonScProps) => {
 
     return <ButtonStyle onClick={onClick} variant={variant} size={size}>
         <span>{`${label}`}</span>
