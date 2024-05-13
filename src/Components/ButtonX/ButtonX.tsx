@@ -1,17 +1,17 @@
 import {ReactNode} from 'react';
 import './ButtonX.scss';
-import * as stylex from '@stylexjs/stylex';
+// import * as stylex from '@stylexjs/stylex';
 
-const styles = stylex.create({
-    root: {
-      width: '100%',
-      maxWidth: 800,
-        minHeight: 40,
-      backgroundColor: '#ff00ff',
-    },
-});
+// const styles = stylex.create({
+//     root: {
+//       width: '100%',
+//       maxWidth: 800,
+//         minHeight: 40,
+//       backgroundColor: '#ff00ff',
+//     },
+// });
   
-console.log(styles.root);
+// console.log(styles.root);
 
 export type ButtonXProps = {
     label?: string;
