@@ -2,9 +2,9 @@
   "name": "redhand-ui",
   "description": "A UI library.",
   "version": "1.0.2",
-  "type": "module",
   "main": "index.ts",
   "author": "Graham Clapham",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrclapham/redhand-ui.git"
@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.24.1",
     "@stylexjs/stylex": "^0.6.1",
-    "@tokens-studio/sd-transforms": "^0.15.2",
+    "@tokens-studio/sd-transforms": "^0.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.76.0",
@@ -69,8 +69,10 @@
     "jsdom": "^24.0.0",
     "storybook": "^8.0.9",
     "tailwindcss": "^3.4.3",
+    "token-transformer": "^0.0.33",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "vite": "^5.2.0",
     "vite-plugin-stylex": "^0.8.3",
     "vitest": "^1.5.3"
