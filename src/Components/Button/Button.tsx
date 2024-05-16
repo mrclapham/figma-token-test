@@ -1,5 +1,4 @@
 import {ReactNode} from 'react';
-import './Button.scss';
 
 export type ButtonProps = {
     label?: string;

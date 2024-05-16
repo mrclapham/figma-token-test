@@ -8,7 +8,7 @@ export type ButtonTwProps = {
     onclick: () => void;
 }
 
-export const ButtonTw = ({ children = undefined, onclick = ()=> {}, variant = 'primary',  size = 'medium', label="Button" }: ButtonTwProps) => {
+export const ButtonTw = ({ children = undefined, onclick = ()=> {}, label="Button" }: ButtonTwProps) => {
     
     return <button className="bg-gryn inset-10 hover:bg-bloo p-3 rounded-full text-brown-300" onClick={onclick}>
         <span>{`${label}`}</span>
