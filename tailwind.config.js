@@ -5,4 +5,7 @@ import theme from './tailwindConfig/tailwind.theme.config';
 export default {
   ...base,
   ...plugins, 
-  theme }
+  theme
+}
+  
+
