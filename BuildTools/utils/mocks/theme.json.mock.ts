@@ -598,6 +598,10 @@ export const shortTokens = {
         "type": "color"
       }
     },
+    "Tertiary 90%": {
+        "value": "#fdcc4ae6",
+        "type": "color"
+      },
     "fontFamilies": {
       "source-sans-pro": {
         "value": "Source Sans Pro",

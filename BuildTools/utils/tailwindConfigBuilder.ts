@@ -1,6 +1,7 @@
 
 
 import type { Config } from "tailwindcss";
+import { makeKeyString } from "./stringUtils";
 
 export const baseConfig: Config = {
     content: [
@@ -73,6 +74,9 @@ export const baseConfig: Config = {
     presets: [],
     darkMode: 'media' || 'class' || false,
 }
+
+export type typeValueRecord = Record<string, unknown> & { type: string, value: string };
+export type typeValueRecordWithParent = typeValueRecord & { parent: string | null, keyTitle: string };
 
 export type TailwindThemeConfig = {
     screens: Record<string, string>,
@@ -212,10 +216,10 @@ console.log(baseTheme);
 export const extractObjectsWithKeys = (
     obj: Record<string, unknown>,
     key: string = "type",
-    keyTitle: string ="",
+    keyTitle: string = "",
     accumulator: Record<string, unknown>[] = []): Record<string, unknown>[] => {
     if (Object.keys(obj).includes(key)) {
-        accumulator.push({...obj, keyTitle });
+        accumulator.push({ ...obj, keyTitle });
         return accumulator;
     } else {
         Object.entries(obj).forEach(([keyTitle, value]) => {
@@ -227,11 +231,51 @@ export const extractObjectsWithKeys = (
     return accumulator;
 }
 
-// export const extractTypes = (theme: Record<string, unknown>) => {
+/**
+ * Recursively extracts nested elements from an object with a key matching the key argument passed. The default key is "type".
+ * @param obj {Record<string, unknown>} - The object to extract top level elements from
+ * @param key {string} - The key to search for in the object. Default is "type"
+ * @returns {typeValueRecordWithParent[]}
+ */
+export const extractTopLevelElements = (obj: Record<string, unknown>, key: string = "type"): typeValueRecordWithParent[] => {
+    return Object.entries(obj).map(([keyTitle, value]) => {
+        if (keyTitle && typeof value === "object" && !Array.isArray(value) && value && !Object.keys(value).includes(key)) {
+            return extractObjectsWithKeys(value as Record<string, unknown>, key, keyTitle).map((item) => {
+                return {
+                    parent: keyTitle,
+                    ...item,
+                } as typeValueRecordWithParent;
+            });
+        }
+        return [{ parent: null, keyTitle, ...value as Record<string, unknown> } as typeValueRecordWithParent];
+    }).flat();
+}
 
 
+/**
+ * Extracts all elements with a 'type' value matching the argument from an object.
+ * @param obj {Record<string, unknown>} - The theme object to extract types from
+ * @param type {string} - The type to extract from the theme object. Default is "color"
+ * @returns {typeValueRecord[]}
+ */
+export const extractTypes = (obj: Record<string, unknown>, type: string = 'color'): typeValueRecordWithParent[] =>
+    extractTopLevelElements(obj)
+        .filter((item) => 'type' in item && item.type === type) as typeValueRecordWithParent[];
 
-// }
+        export const groupItemsByParent = (items: typeValueRecordWithParent[]): Record<string, Record<string, typeValueRecord> | string | typeValueRecordWithParent> => {
+            return items.reduce((acc: Record<string, any>, item) => {
+                if (item.parent) {
+                    if (!acc[makeKeyString(item.parent)]) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                        acc[makeKeyString(item.parent)] = {};
+                    }
+                    acc[makeKeyString(item.parent)][makeKeyString(item.keyTitle, item.parent)] = item.value;
+                } else {
+                    acc[makeKeyString(item.keyTitle)] = item.value;
+                }
+                return acc;
+            }, {});
+        };
+
 
 export const tailwindConfigThemeBuilder = (config: Partial<TailwindThemeConfig>) => {
     return {

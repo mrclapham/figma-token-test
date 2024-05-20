@@ -4,7 +4,6 @@
 
 import type { DesignTokensFigma } from './design-token-builder';
 import { extractThemes } from './utils/extractThemes'
-import { removeSuffix } from './utils/stringUtils'
 
 const testData: DesignTokensFigma = {
     "dark": {
@@ -113,14 +112,6 @@ describe("design-token-builder", () => {
             expect(testData).toEqual(testData)
         })
     });
-    describe("removeSuffix", () => {
-        it("Should remove the suffix from a string", () => {
-            expect(removeSuffix("ButtonTw.tsx")).toEqual("ButtonTw")
-            expect(removeSuffix("ButtonTw.json")).toEqual("ButtonTw")
-            expect(removeSuffix("ButtonTw.json")).toEqual("ButtonTw")
-            expect(removeSuffix("ButtonTw.other.json")).toEqual("ButtonTw")
-        })
-    })   
     
         
 })
