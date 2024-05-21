@@ -21,8 +21,8 @@
     "tw:build": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "storybook": "yarn tokens && storybook dev -p 6006",
-    "build-storybook": "yarn tokens && storybook build",
+    "storybook": "yarn token && storybook dev -p 6006",
+    "build-storybook": "yarn token && storybook build",
     "test": "jest"
   },
   "dependencies": {
@@ -46,6 +46,7 @@
     "@storybook/addon-interactions": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",
     "@storybook/addon-onboarding": "^8.0.9",
+    "@storybook/addon-styling-webpack": "^1.0.0",
     "@storybook/blocks": "^8.0.9",
     "@storybook/react": "^8.0.9",
     "@storybook/react-vite": "^8.0.9",

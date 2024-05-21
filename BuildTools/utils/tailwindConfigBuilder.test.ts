@@ -1,5 +1,5 @@
 import { shortTokens } from './mocks/theme.json.mock';
-import { extractObjectsWithKeys, extractTopLevelElements, extractTypes, groupItemsByParent } from './tailwindConfigBuilder';
+import { extractObjectsWithKeys, extractTopLevelElements, extractTypes, groupItemsByParent, tailwindConfigBuilder } from './tailwindConfigBuilder';
 
 describe('tailwindConfigBuilder', () => {
     describe('extractTopLevelElements', () => {
@@ -70,5 +70,15 @@ describe('tailwindConfigBuilder', () => {
             );
         });
     });
+
+    describe('tailwindConfigBuilder', () => {
+        const result = tailwindConfigBuilder(shortTokens, 'color');
+        const keys = Object.keys(result);
+        it('should return an object', () => {
+            expect(keys).toEqual(expect.arrayContaining(['colors']));
+            expect(keys.length).toEqual(1);
+        });
+    }); 
+
     
 });

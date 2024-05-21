@@ -10,8 +10,8 @@ import { Config } from "style-dictionary";
 import { writeToFile } from "./utils/WriteToFile";
 import { removeSuffix } from "./utils/stringUtils";
 import { TailwindThemeConfig, tailwindConfigBuilder } from "./utils/tailwindConfigBuilder";
-import {  tokens as LightTheme } from "../design_token_exports/light_theme/ts/tokens";
-import {  tokens as DarkTheme } from "../design_token_exports/dark_theme/ts/tokens";
+import { tokens as LightTheme } from "../design_token_exports/light_theme/ts/tokens";
+import { tokens as DarkTheme } from "../design_token_exports/dark_theme/ts/tokens";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -180,18 +180,18 @@ export const config: Config = {
 
 export const createConfig = (baseConfig: Config, themeName: string, source: string[]): Config => {
     const { platforms } = baseConfig;
-    let newPlatform = {...platforms};
+    let newPlatform = { ...platforms };
     if (platforms) {
         const platformKeys = Object.keys(platforms);
         newPlatform = platformKeys.reduce((acc, current) => {
-        const platform = platforms[current];
-        return {
-            ...acc,
-            [current]: {
-                ...platform,
-                buildPath: getExportsDirectoryPath(removeSuffix(themeName), current)
+            const platform = platforms[current];
+            return {
+                ...acc,
+                [current]: {
+                    ...platform,
+                    buildPath: getExportsDirectoryPath(removeSuffix(themeName), current)
+                }
             }
-        }
         }, {});
     }
 
@@ -200,8 +200,15 @@ export const createConfig = (baseConfig: Config, themeName: string, source: stri
 
 
 export const createTailwindConfig = (theme: string = "dark"): void => {
-    const themeToUse  = theme === "dark" ? DarkTheme : LightTheme;
-    writeToFile(`export default ${JSON.stringify(tailwindConfigBuilder(), null, 2)}`, 'output_tailwind.config', getTailwindExportsDirectoryPath(theme, 'tailwind_config'), 'js');
+    const tokens: DesignTokensFigma = JSON.parse(fs.readFileSync(getSourceJsonPath(), "utf-8"));
+    const { $metadata: { tokenSetOrder } } = tokens;
+    const extractedThemes = extractThemes(tokenSetOrder, tokens);
+    if (extractedThemes.length) {
+        extractedThemes.forEach(([key, value]) => {
+            writeToFile(`export default ${JSON.stringify(tailwindConfigBuilder(value as Record<string, unknown>, 'color'), null, 2)}`, `tailwind.theme.${key}.config`, getTailwindExportsDirectoryPath(theme, `tw_config_${key}`), 'js');
+        });
+    }
+    //writeToFile(`export default ${JSON.stringify(tailwindConfigBuilder(), null, 2)}`, `${key}_tailwind.config`, getTailwindExportsDirectoryPath(theme, 'tailwind_config'), 'js');
 }
 
 
