@@ -2,6 +2,7 @@
 
 import type { Config } from "tailwindcss";
 import { makeKeyString } from "./stringUtils";
+import {  tokens as lightTokens } from "../../design_token_exports/light_theme/ts/tokens";
 
 export const baseConfig: Config = {
     content: [
@@ -282,4 +283,14 @@ export const tailwindConfigThemeBuilder = (config: Partial<TailwindThemeConfig>)
         ...baseConfig,
         ...config,
     };
+}
+
+
+export const tailwindConfigBuilder = () => {
+    const colors = extractTypes(lightTokens, 'color');
+    return colors
+    // return tailwindConfigThemeBuilder({
+    //     ...baseTheme,
+    //     ...colors,
+    // });
 }

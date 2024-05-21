@@ -1,4 +1,4 @@
-import StyleDictionary from "style-dictionary";
+import StyleDictionary, { tokens } from "style-dictionary";
 import fs from "fs";
 import path from "path";
 import { FormatterArguments } from "style-dictionary/types/Format";
@@ -9,6 +9,9 @@ import { Config } from "style-dictionary";
 
 import { writeToFile } from "./utils/WriteToFile";
 import { removeSuffix } from "./utils/stringUtils";
+import { TailwindThemeConfig, tailwindConfigBuilder } from "./utils/tailwindConfigBuilder";
+import {  tokens as LightTheme } from "../design_token_exports/light_theme/ts/tokens";
+import {  tokens as DarkTheme } from "../design_token_exports/dark_theme/ts/tokens";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,6 +49,7 @@ const getSourceJsonPath = (): string => path.join(__dirname, "../rh_tokens/token
  */
 const getDirectoryPath = (): string => path.join(__dirname, "../design_token_converted");
 const getExportsDirectoryPath = (directory: string, filename: string): string => `${path.join(__dirname, "../design_token_exports")}/${directory}/${filename}/`;
+const getTailwindExportsDirectoryPath = (directory: string, filename: string): string => `${path.join(__dirname, "../tailwindConfig")}`;
 
 
 /**
@@ -195,6 +199,12 @@ export const createConfig = (baseConfig: Config, themeName: string, source: stri
 }
 
 
+export const createTailwindConfig = (theme: string = "dark"): void => {
+    const themeToUse  = theme === "dark" ? DarkTheme : LightTheme;
+    writeToFile(`export default ${JSON.stringify(tailwindConfigBuilder(), null, 2)}`, 'output_tailwind.config', getTailwindExportsDirectoryPath(theme, 'tailwind_config'), 'js');
+}
+
+
 const execute = () => {
     const filePaths = preprocessTokensJson();
     filePaths.forEach((filePath) => {
@@ -203,6 +213,7 @@ const execute = () => {
         styleDictionaryInstance.cleanAllPlatforms();
         styleDictionaryInstance.buildAllPlatforms();
     });
+    createTailwindConfig("dark");
 }
 
 execute();
