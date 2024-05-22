@@ -554,6 +554,15 @@ video {
   --tw-contain-style:  ;
 }
 
+.btn-red {
+  background-color: #e3342f;
+  color: #fff;
+}
+
+.btn-red:hover {
+  background-color: #cc1f1a;
+}
+
 .inset-10 {
   inset: 2.5rem;
 }

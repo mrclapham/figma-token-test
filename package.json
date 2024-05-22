@@ -19,11 +19,13 @@
     "tokens": "node build-tokens",
     "token": "npx esno BuildTools/design-token-builder.ts",
     "tw:build": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "tw:build:post": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "yarn token && storybook dev -p 6006",
     "build-storybook": "yarn token && storybook build",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "yarn tw:build"
   },
   "dependencies": {
     "@babel/preset-react": "^7.24.1",
