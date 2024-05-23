@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 22 May 2024 15:56:59 GMT
+ * Generated on Thu, 23 May 2024 15:08:59 GMT
  */
 
 export const PrimaryPrimary100 = "#e86c00";
